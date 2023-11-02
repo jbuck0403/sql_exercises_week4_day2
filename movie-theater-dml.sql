@@ -57,20 +57,34 @@ INSERT INTO tickets(
     3
 );
 
-INSERT INTO concessions(
-    customer_id,
-    concession_name,
-    concession_price
+INSERT INTO concessions(concession_name,
+                        concession_description,
+                        concession_price
+) VALUES (
+    'Nachos',
+    'Stale chips with old, melted down tires colored orange',
+    15.99
+), (
+    'Coke',
+    'Carbonated water sweetened artificially with pig fattener',
+    3.99
+), (
+    'Reeses Pieces',
+    'Just an all around good snack',
+    8.99
+);
+
+INSERT INTO concessions_transaction(customer_id
+) VALUES (
+    1
+);
+
+INSERT INTO concessions_receipt(transaction_id,
+                                concession_id
 ) VALUES (
     1,
-    'Nachos',
-    20.50
+    1
 ), (
-    3,
-    'Popcorn',
-    11.99
-), (
-    3,
-    'Coke',
-    5.79
+    1,
+    2
 );

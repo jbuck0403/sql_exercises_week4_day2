@@ -18,12 +18,19 @@ CREATE TABLE tickets(ticket_id SERIAL PRIMARY KEY,
                      FOREIGN KEY (movie_id) REFERENCES movies(movie_id)
                      );
 
-CREATE TABLE concessions(transaction_id SERIAL PRIMARY KEY,
-                         customer_id INTEGER,
-                         concession_purchased VARCHAR,
-                         concession_price DECIMAL(4,2),
-                         FOREIGN KEY (customer_id) REFERENCES customers(customer_id)
+CREATE TABLE concessions(concession_id SERIAL PRIMARY KEY,
+                         concession_name VARCHAR,
+                         concession_description TEXT,
+                         concession_price DECIMAL(4,2)
                          );
 
-ALTER TABLE concessions
-RENAME COLUMN concession_purchased TO concession_name;
+CREATE TABLE concessions_transaction(transaction_id SERIAL PRIMARY KEY,
+                                     customer_id INTEGER,
+                                     FOREIGN KEY (customer_id) REFERENCES customers(customer_id)
+                                     );
+
+CREATE TABLE concessions_receipt(transaction_id INTEGER,
+                                 concession_id INTEGER,
+                                 FOREIGN KEY (transaction_id) REFERENCES concessions_transaction(transaction_id),
+                                 FOREIGN KEY (concession_id) REFERENCES concessions(concession_id)
+                                 );
